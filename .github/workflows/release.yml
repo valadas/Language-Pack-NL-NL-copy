@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v2
       
     - name: Zip Release
-      run: cd Resources && zip -r release.zip Resources
+      run: cd Resources && zip -r release.zip *
 
     - name: Create Release
       uses: ncipollo/release-action@v1.6.1
