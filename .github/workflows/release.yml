@@ -1,4 +1,4 @@
-name: CI
+name: Release
 on:
   push:
     branches:
@@ -22,7 +22,7 @@ jobs:
     - name: Create Release
       uses: ncipollo/release-action@v1.6.1
       with:
-        artifact: release.zip
+        artifacts: release.zip
         body: Dnn Language pack
         tag: 1.2.3
         # The Github token.
