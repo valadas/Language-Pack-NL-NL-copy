@@ -1,0 +1,29 @@
+name: CI
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Zip Release
+      uses: TheDoctor0/zip-release@v0.3.0
+      with:
+        # Filename for archive
+        filename: release.zip
+        path: ./Artifacts
+        # Working directory before zipping
+        directory: ./Resources
+
+    - name: Create Release
+      uses: ncipollo/release-action@v1.6.1
+      with:
+        artifact: ./Artifacts/release.zip
+        body: Dnn Language pack
+        tag: 1.2.3
+        # The Github token.
+        token: ${{ secrets.GITHUB_TOKEN }}
