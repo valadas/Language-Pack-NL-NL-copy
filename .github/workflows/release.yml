@@ -12,12 +12,7 @@ jobs:
     - uses: actions/checkout@v2
       
     - name: Zip Release
-      uses: TheDoctor0/zip-release@v0.3.0
-      with:
-        # Filename for archive
-        filename: release.zip
-        # Working directory before zipping
-        directory: ./Resources
+      run: zip -r release.zip Resources
 
     - name: Create Release
       uses: ncipollo/release-action@v1.6.1
