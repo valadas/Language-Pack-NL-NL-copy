@@ -12,12 +12,12 @@ jobs:
     - uses: actions/checkout@v2
       
     - name: Zip Release
-      run: zip -r release.zip Resources
+      run: cwd Resources && zip -r release.zip Resources
 
     - name: Create Release
       uses: ncipollo/release-action@v1.6.1
       with:
-        artifacts: release.zip
+        artifacts: Resources/release.zip
         body: Dnn Language pack
         tag: 1.2.3
         # The Github token.
