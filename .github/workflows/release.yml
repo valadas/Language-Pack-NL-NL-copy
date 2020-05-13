@@ -11,14 +11,22 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       
+    - name: get-version-from-dnn-manifest
+      uses: valadas/get-version-from-dnn-manifest@v1
+      id: version
+      
     - name: Zip Release
-      run: cd Resources && zip -r release.zip *
+      run: cd Resources && zip -r release_$MAJOR_$MINOR_$PATCH.zip *
+      env:
+        MAJOR: ${{ steps.version.outputs.major }}
+        MINOR: ${{ steps.version.outputs.minor }}
+        PATCH: ${{ steps.version.outputs.patch }}
 
     - name: Create Release
       uses: ncipollo/release-action@v1.6.1
       with:
-        artifacts: Resources/release.zip
+        artifacts: Resources/*.zip
         body: Dnn Language pack
-        tag: 1.2.3
+        tag: ${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }}.${{ steps.version.outputs.patch }}
         # The Github token.
         token: ${{ secrets.GITHUB_TOKEN }}
