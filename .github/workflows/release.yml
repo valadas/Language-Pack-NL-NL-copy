@@ -13,7 +13,7 @@ jobs:
       
     - name: Dump GitHub context
       env:
-        GITHUB_CONTEXT: ${{ github.repository.name }}
+        GITHUB_CONTEXT: ${{ toJson(github.repository) }}
       run: echo "$GITHUB_CONTEXT"
       
     - name: get-version-from-dnn-manifest
