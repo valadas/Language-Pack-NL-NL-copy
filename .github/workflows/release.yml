@@ -5,11 +5,16 @@ on:
       - master
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
+      
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
       
     - name: get-version-from-dnn-manifest
       uses: valadas/get-version-from-dnn-manifest@v1
