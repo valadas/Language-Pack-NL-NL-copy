@@ -16,7 +16,7 @@ jobs:
       id: version
       
     - name: Zip Release
-      run: cd Resources && zip -r release_$MAJOR.$MINOR.$PATCH.zip *
+      run: cd Resources && zip -r release_$VERSION.zip *
       env:
         VERSION: ${{ steps.version.outputs.versionString }}
 
