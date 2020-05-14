@@ -16,11 +16,9 @@ jobs:
       id: version
       
     - name: Zip Release
-      run: cd Resources && zip -r release_$MAJOR_$MINOR_$PATCH.zip *
+      run: cd Resources && zip -r release_$MAJOR.$MINOR.$PATCH.zip *
       env:
-        MAJOR: ${{ steps.version.outputs.major }}
-        MINOR: ${{ steps.version.outputs.minor }}
-        PATCH: ${{ steps.version.outputs.patch }}
+        VERSION: ${{ steps.version.outputs.versionString }}
 
     - name: Create Release
       uses: ncipollo/release-action@v1.6.1
