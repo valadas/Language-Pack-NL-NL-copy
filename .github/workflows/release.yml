@@ -18,7 +18,7 @@ jobs:
     - name: Zip Release
       run: cd Resources && zip -r $FILENAME.zip *
       env:
-        FILENAME: ${{ steps.version.outputs.versionString }}_${{ github.event.repository.name }}
+        FILENAME: ${{ github.event.repository.name }}_${{ steps.version.outputs.versionString }}
 
     - name: Create Release
       uses: ncipollo/release-action@v1.6.1
